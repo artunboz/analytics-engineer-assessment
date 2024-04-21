@@ -1,0 +1,87 @@
+### Understanding the Needs of the Users
+
+I would start by identifying key metrics that convey the performance/success of the
+current checkout options. These would serve as a basis of comparison for this
+'one-click checkout' feature. These metrics could include:
+
+1. Conversion rate: The percentage of users that purchase a ticket after viewing an
+   ad/event
+2. What percentage of users end up not purchasing a ticket after adding it to their
+   cart?
+3. How much time it takes to make a purchase after adding a ticket to a cart?
+4. User satisfaction: Can be asked via a survey to the user after completing a purchase
+
+These metrics would help us understand and measure the key problems users face when
+checking out. I would also look at the percentage of our active users that could use
+from this feature. This question can be answered by looking at the percentage of users
+that completed a successful purchase and also saved the payment method to their account.
+
+### Understanding the Requirements
+
+Assuming that I need to answer this question from the perspective of an analytics
+engineer, I won't get into this aspect too much. The requirements could include:
+
+1. Functional requirements: How is the ticket delivered after the purchase? What happens
+   if multiple users try to check out with the same ticket? What happens if the payment
+   fails?
+2. Non-functional requirements: How fast should the checkout process be on average or
+   most of the time (95th percentile)? What methods of payment should be supported?
+   What level of scalability is needed for this feature (for example during peak hours).
+
+### Data Collection Considerations for the Feature
+
+I would lay out the types of event data that we would want to collect to measure
+success. Having these identified before the implementation would allow the product team
+to keep these in mind when designing the implementation. The event data that we would
+want to collect could include:
+
+1. If a user attempts to check out using this feature
+2. If the checkout was a success
+3. The time taken to complete the checkout
+4. Type of payment method used
+5. Value of the cart when this feature is used
+6. Time of day when this feature is used (can be used for user analysis)
+7. Type of event (I mean real life event here such as concerts, not to be confused with
+   system events such as clicks :)) for which the ticket was purchased (can be used for
+   user analysis)
+8. (During A/B tests) If the user was prompted with the option to use this feature
+
+### Launching the Feature
+
+After the feature is implemented, I would suggest launching it with an A/B test. This
+would allow us to measure the impact of the feature on the key metrics that we
+identified. The way the A and B groups are split would be quite important for our
+conclusions. So I would try to minimize the number of variables that could affect our
+key metrics. For this purpose, I would suggest conducting A/B tests on multiple levels.
+These could be the following:
+
+1. Offering this feature to tickets of event A and not to tickets of event B where A and
+   B are similar in terms of genre, popularity, price, etc. To determine this, we could
+   look at events with a large overlap of users. Or, we could try to establish user
+   similarity and use that.
+2. Splitting the buyers of an event X into two groups A and B, one of which is offered
+   this feature and the other is not. We need to make sure that these groups are
+   balanced in terms of demographics, past purchase history, etc.
+
+We also need to calculate the sample sizes needed to detect a significant difference in
+the key metrics. This would help us determine how long the A/B test should run. After
+the A/B test is complete, we would analyze the results and decide whether to launch the
+feature to all users.
+
+### Monitoring the Feature
+
+After the feature is launched, we would need to monitor the key metrics that we
+identified previously to see if there are system-wide changes to them. We would also
+need to monitor the performance of the feature itself. This would include monitoring the
+time taken to complete a checkout, the success rate of checkouts using this feature,
+etc. We would also need to monitor the impact of the feature on other metrics. For
+example, we would need to monitor the impact of this feature on the usage rate of other
+checkout options and overall effect on user retention and satisfaction.
+
+### Final Considerations
+
+I should also note that it is important to keep in mind the current data infrastructure
+TicketSwap has throughout these steps. For example, it could be that the current
+infrastructure is not capable of tracking certain system events due to technical or
+legal limitations. It could also be that my steps above would require changes to the
+current infrastructure. These would need to be taken into account when planning.

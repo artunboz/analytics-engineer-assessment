@@ -1,0 +1,46 @@
+I would start out by identifying what analysis we want to conduct on this data. Below
+are some information that I think is relevant for this data and TicketSwap:
+
+- Locations:
+    - Most popular locations, cities, and countries
+    - Trending locations, cities, and countries
+    - Stale locations (maybe the venue closed down) (can be estimated based on the date
+      of last event held there)
+- Events and Ads:
+    - Most popular events
+    - Trending events
+    - Most popular artists (can be extracted from the event name)
+    - Trending artists
+    - Events for which we expect increasing traffic in the upcoming days, i.e. events
+      that will happen soon
+    - Amount of demand for the tickets of an event (is_sold ratio of the ads for this
+      event)
+    - Number of currently available tickets for an event
+    - Average price per event, country, and city
+    - The amount of deviation in the prices per event
+    - What kind of people buy tickets for this event?
+    - Is the same person selling a lot of tickets for this event?
+    - How does the price affect the speed of selling the ticket?
+
+Some of these questions cannot be answered by the data we have. Therefore, if possible,
+I would supplement the data with another table that contains user information, i.e. the
+buyers and sellers of tickets. The ad.csv file would then have pointers to this table
+for the sellers as well as buyers if the `is_sold` column is set to 1.
+
+Additionally, we need to supplement the ad.csv table with a column that shows the time
+at which the tickets were sold if they were sold.
+
+After looking at all the questions and the data, it seems to me that the original_price
+column refers to the price at which an ad was created. This also means that we do not
+store the price at which the original tickets of the event were sold, i.e. the price the
+event organizer had set. This is important info, so I would add this as a column to the
+event.csv table. With this info, we can limit the amount of deviation between the
+original ticket price and the ad price. We can also calculate statistics like the amount
+of deviation per country, etc. We could also calculate how the deviation affects the
+speed or probability of selling a ticket. We can use this info to help sellers determine
+the price of their tickets.
+
+I assume that all tables are indexed by the `id` column. I would also index the ad.csv
+table by the `event_id` column. I would index the event.csv table by the `location_id`.
+Since we will be doing a lot of analysis based on these fields, indexing would make our
+job easier by making the queries faster.
